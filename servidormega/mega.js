@@ -1,29 +1,44 @@
+
 const db = require("./db"); // Importa a conexão com o BD PostgreSQL
 const router = require("express").Router();
 
-// Rota para retornar o concurso mais recente
-router.get("/", async function (req, res) {
+router.get("/", async (req, res) => {
     try {
         const result = await db.query(
             "SELECT * FROM megasena ORDER BY concurso DESC LIMIT 1"
         );
+        if (result.rowCount === 0) {
+            return res.status(404).json({ erro: 'Concurso não encontrado' });
+        }
         res.json(result.rows[0]);
     } catch (error) {
-        res.json({ erro: "Erro interno do servidor" });
+        console.error(error);
+        res.status(500).json({ erro: "Erro interno do servidor" });
     }
 });
 
-// Rota para retornar o concurso de número específico
-router.get("/2848", async function (req, res) {
+
+router.get("/:concurso", async (req, res) => {
+    const concurso = parseInt(req.params.concurso);
     try {
         const result = await db.query(
-            "SELECT * FROM megasena WHERE concurso = 2848"
+            "SELECT * FROM megasena WHERE concurso = $1",
+            [concurso]
         );
+        if (result.rowCount === 0) {
+            return res.status(404).json({ erro: 'Concurso não encontrado' });
+        }
         res.json(result.rows[0]);
     } catch (error) {
-        res.json({ erro: "Erro interno do servidor" });
+        console.error(error);
+        res.status(500).json({ erro: "Erro interno do servidor" });
     }
 });
+
+
+
+
+
 
 // Rota para inserir um novo registro na tabela
 router.post("/megasena", async function (req, res) {
@@ -65,9 +80,13 @@ router.post("/megasena", async function (req, res) {
                 null,
             ]
         );
+        if (result.rowCount === 0) {
+            return res.status(404).json({ erro: 'Rota não encontrada' });
+        }
         res.json(result.rows[0]);
     } catch (error) {
-        res.json({ erro: "Dados incompletos" });
+        res.status(500).json({ erro: "Dados incompletos" });
+
     }
 });
 
@@ -124,8 +143,8 @@ router.put("/1", async function (req, res) {
             ]
         );
 
-        if (result.rows.length === 0) {
-            return res.status(404).json({ erro: "Concurso não encontrado" });
+        if (result.rowCount === 0) {
+            return res.status(404).json({ erro: 'Rota não encontrada' });
         }
 
         res.json(result.rows[0]);
@@ -135,27 +154,26 @@ router.put("/1", async function (req, res) {
     }
 });
 
-// Rota para excluir um concurso específico
-router.delete("/:concurso", async function (req, res) {
-    const concursoParam = Number(req.params.concurso);
-  
+router.delete("/:concurso", async (req, res) => {
+    const concurso = parseInt(req.params.concurso);
+
     try {
-      const result = await db.query(
-        `DELETE FROM megasena WHERE concurso = $1 RETURNING *`,
-        [concursoParam]
-      );
-  
-      if (result.rows.length === 0) {
-        return res.status(404).json({ erro: 'Concurso não encontrado' });
-      }
-  
-      res.json({ mensagem: `Concurso ${concursoParam} excluído com sucesso!`, concurso: result.rows[0] });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ erro: 'Erro ao excluir concurso' });
+        const result = await db.query(
+            "DELETE FROM megasena WHERE concurso = $1",
+            [concurso]
+        );
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ erro: 'Rota não encontrado' });
+        }
+
+        res.json({ mensagem: `Concurso ${concurso} excluído com sucesso.` });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ erro: 'Erro ao excluir concurso' });
     }
-  });
-  
+});
+
 
 // Exporta o router para ser usado no servidor principal
 module.exports = router;
