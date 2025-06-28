@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Quiz sobre a série Friends</h1>
+    </header>
+
+    <form id="quizForm">
+        <fieldset>
+            <legend>1. Em qual cidade a série se passa?</legend>
+            <label><input type="radio" name="q1" value="a"><span class="choice-text">Miami</span></label>
+            <label><input type="radio" name="q1" value="b"><span class="choice-text">Nova York</span></label>
+            <label><input type="radio" name="q1" value="c"><span class="choice-text">Los Angeles</span></label>
+        </fieldset>
+
+        <fieldset>
+            <legend>2. Qual é a profissão de Monica Geller?</legend>
+            <label><input type="radio" name="q2" value="a"><span class="choice-text">Chef de Cozinha</span></label>
+            <label><input type="radio" name="q2" value="b"><span class="choice-text">Atriz</span></label>
+            <label><input type="radio" name="q2" value="c"><span class="choice-text">Dentista</span></label>
+        </fieldset>
+
+        <fieldset>
+            <legend>3. O que Joey nunca compartilha?</legend>
+            <label><input type="radio" name="q3" value="a"><span class="choice-text">Suas roupas</span></label>
+            <label><input type="radio" name="q3" value="b"><span class="choice-text">Sua comida</span></label>
+            <label><input type="radio" name="q3" value="c"><span class="choice-text">Seus DVDs</span></label>
+        </fieldset>
+
+        <fieldset>
+            <legend>4. Qual é o nome secundário da Phoebe?</legend>
+            <label><input type="radio" name="q4" value="a"><span class="choice-text">Phoebe Neeby</span></label>
+            <label><input type="radio" name="q4" value="b"><span class="choice-text">Elaine Benes</span></label>
+            <label><input type="radio" name="q4" value="c"><span class="choice-text">Regina Falange</span></label>
+        </fieldset>
+
+        <fieldset>
+            <legend>5. Quantos casamentos fracassados R​oss tem durante a série?</legend>
+            <label><input type="radio" name="q5" value="a"><span class="choice-text">2</span></label>
+            <label><input type="radio" name="q5" value="b"><span class="choice-text">5</span></label>
+            <label><input type="radio" name="q5" value="c"><span class="choice-text">3</span></label>
+        </fieldset>
+
+        <div style="text-align: center;">
+            <button type="button" class="quiz-button" onclick="verificarRespostas()">Verificar</button>
+        </div>
+
+        <div class="score" id="resultado"></div>
+    </form>
+</body>
+
+</html>
