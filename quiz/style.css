@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #dbeafe, #f0fdf4);
+  margin: 0;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 10px;
+}
+
+form {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+fieldset {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  transition: 0.3s;
+}
+
+fieldset:hover {
+  border-color: #60a5fa;
+  background-color: #f0f9ff;
+}
+
+legend {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.choice-text {
+  flex-grow: 1;
+}
+
+.correct {
+  color: green;
+  font-weight: bold;
+}
+
+.incorrect {
+  color: red;
+  font-weight: bold;
+}
+
+.icon {
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.quiz-button {
+  background-color: #10b981;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.quiz-button:hover {
+  background-color: #059669;
+}
+
+.quiz-button:focus {
+  outline: 3px solid #34d399;
+}
+
+.score {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  form {
+    padding: 15px;
+  }
+}
