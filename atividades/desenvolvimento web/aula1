@@ -1,1 +1,32 @@
+import { useState } from "react";
 
+export default function App() {
+  return <>
+    <Saudacao nome="Ana" />
+    <Saudacao nome="Pedro" />
+    <Saudacao nome="Maria" />
+    <Botao />
+  </>;
+}
+
+interface Props {
+  nome: string;
+
+}
+function Saudacao(props: Props) {
+  return <div>Olá {props.nome}</div>;
+}
+
+function Botao() {
+  const [valor, setValor] = useState(0);
+
+  function inc() {
+    setValor(valor + 1);
+  }
+
+  return <div>
+    <div>Valor: {valor}</div>
+    <button onClick={inc}>Inc</button>
+  </div>;
+}
+0
