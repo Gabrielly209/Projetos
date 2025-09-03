@@ -1,10 +1,10 @@
 import type { CSSProperties } from "react";
 
 interface Props {
-    value: string;
+  value: string;
 }
 
-export default function Ball(props:Props) {
+export default function Ball(props: Props) {
   return <div style={ballSld}>{props.value}</div>;
 }
 
