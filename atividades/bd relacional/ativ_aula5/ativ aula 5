@@ -1,0 +1,40 @@
+INSERT INTO categoria_usuario (nome, descricao) VALUES
+('Administrador', 'Usuário com acesso total ao sistema'),
+('Analista', 'Usuário responsável por monitorar eventos'),
+('Comum', 'Usuário que pode relatar eventos');
+
+INSERT INTO usuario (nome, email, senha_hash, id_categoria) VALUES
+('Ana Silva', 'ana.silva@email.com', 'hash123', 1),
+('Bruno Costa', 'bruno.costa@email.com', 'hash456', 2),
+('Carla Mendes', 'carla.mendes@email.com', 'hash789', 3);
+
+INSERT INTO tipo_evento (nome, descricao) VALUES
+('Inundação', 'Evento relacionado ao excesso de chuvas e enchentes'),
+('Incêndio Florestal', 'Evento causado por queimadas e incêndios'),
+('Deslizamento', 'Evento de queda de terra devido a chuvas fortes');
+INSERT INTO estado (sigla_estado, nome_estado) VALUES
+('SP', 'São Paulo'),
+('RJ', 'Rio de Janeiro'),
+('MG', 'Minas Gerais');
+
+INSERT INTO localizacao (latitude, longitude, cidade, sigla_estado) VALUES
+(-23.550520, -46.633308, 'São Paulo', 'SP'),
+(-22.906847, -43.172896, 'Rio de Janeiro', 'RJ'),
+(-19.916681, -43.934493, 'Belo Horizonte', 'MG');
+
+INSERT INTO evento (titulo, descricao, data_hora, status, id_tipo_evento, id_localizacao) VALUES
+('Enchente no Centro', 'Ruas alagadas após fortes chuvas', '2025-09-05 14:00:00', 'Ativo', 1, 1),
+('Incêndio na Serra', 'Fogo atingiu grande parte da vegetação', '2025-09-05 10:30:00', 'Em Monitoramento', 2, 2),
+('Deslizamento em Vila Rica', 'Queda de barreira bloqueou a estrada', '2025-09-04 22:15:00', 'Resolvido', 3, 3);
+
+SELECT id_usuario, nome, email FROM usuario;
+
+SELECT id_evento, titulo, status FROM evento;
+
+SELECT titulo, descricao, status 
+FROM evento
+WHERE status = 'Ativo';
+
+SELECT nome, email 
+FROM usuario
+WHERE id_categoria = 1;
